@@ -4,7 +4,6 @@ from django.shortcuts import render, HttpResponse
 def home(request):
     return render(request, 'myapp/home.html')
 
-
 def articles(request):
     return render(request, 'myapp/articles.html')
 
