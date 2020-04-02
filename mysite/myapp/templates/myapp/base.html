@@ -2,35 +2,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
-    <link rel="stylesheet" href="{% static "css/foundation.css" %}">
-    <link rel="stylesheet" href="{% static "css/app.css" %}">
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="{% static 'css/app.css'%}"
+     <title></title>
+
   </head>
   <body>
-      <div class="top-bar">
-        <div class="top-bar-left">
-          <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Miguel's Website</li>
-            <li><a href="/home/">Home</a></li>
-            <li><a href="/articles/">Articles</a></li>
-            <li><a href="/pictures/">Pictures</a></li>
-            <li><a href="/resume/">Resume</a></li>
-            <li><a href="/chat/">Chat</a></li>
-          </ul>
-        </div>
-        <div class="top-bar-right">
-          <ul class="menu">
-            <li><a href="#">Login</a></li>
-          </ul>
-        </div>
-      </div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <a href="{% url 'Home' %}" class="navbar-brand">Miguel's Website</a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav">
+                  <a href="{% url 'Home' %}" class="nav-item nav-link">Home</a>
+                  <a href="{% url 'Articles' %}" class="nav-item nav-link">Articles</a>
+                  <a href="{% url 'Pictures' %}" class="nav-item nav-link">Pictures</a>
+                  <a href="{% url 'Resume' %}" class="nav-item nav-link">Resume</a>
+                  <a href="{% url 'Chat' %}" class="nav-item nav-link">Chat</a>
+
+              </div>
+              <div class="navbar-nav ml-auto">
+                  <a href="#" class="nav-item nav-link">Login</a>
+                  <a href="{% url 'Register' %}" class="nav-item nav-link">Register</a>
+              </div>
+          </div>
+      </nav>
       <div class = "container">
         {% block content%} 
         {% endblock %}
-        <script src="{% static "js/vendor/jquery.js" %}"></script>
-        <script src="{% static "js/vendor/what-input.js" %}"></script>
-        <script src="{% static "js/vendor/foundation.js" %}"></script>
-        <script src="{% static "js/app.js" %}"></script>
       </div>
+      <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

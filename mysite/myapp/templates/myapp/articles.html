@@ -1,4 +1,15 @@
 {% extends "myapp/base.html" %}
 {% block content %}
-    <h1> This is my article page! </h1>
+    {% for article in articles %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" >{{ article.author }}</a>
+                    <small class="text-muted">{{ article.datePosted|date:"F d, Y" }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ article.title }}</a></h2>
+                <p class="article-content">{{ article.content }}</p>
+            </div>
+        </article>
+    {% endfor %}
 {% endblock content %}
