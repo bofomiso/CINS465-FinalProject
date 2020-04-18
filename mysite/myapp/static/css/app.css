@@ -1,3 +1,8 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
 body {
     background: #fafafa;
     color: black;
@@ -5,13 +10,24 @@ body {
   
   h1, h2, h3, h4, h5, h6 {
     color: black;
+    text-align: center;
+    
   }
   
   ul {
-    margin: 0;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    display: table;
   }
-  
-  .content-section {
+
+  li {
+    float: left;
+    padding: 16px;
+  }
+
+    .content-section {
     background: #ffffff;
     padding: 10px 20px;
     border: 1px solid #dddddd;
@@ -53,5 +69,13 @@ body {
     width: 25px;
     height: 25px;
     vertical-align: middle;
+  }
+
+  .rotateimg90 {
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    -o-transform:rotate(90deg);
+    transform: rotate(90deg);
   }
   

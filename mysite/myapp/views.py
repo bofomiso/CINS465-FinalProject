@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Articles
+from .models import Articles, Comment, Pictures
 
 from django.contrib.auth.forms import UserCreationForm
 from . import forms
@@ -9,13 +9,30 @@ def home(request):
     return render(request, 'myapp/home.html')
 
 def articles(request):
+    articles_objects = Articles.objects.all()
+    articles=[]
+    for article in articles_objects:
+        comment_objects=Comment.objects.filter(content=article)
+        temp_article={}
+        temp_article["title"] = article.title
+        temp_article["content"]=article.content
+        temp_article["datePosted"] = article.datePosted
+        temp_article["author"]=article.author.username
+        temp_article["comments"]=comment_objects
+        articles+=[temp_article]
+        
+
     context = {
-        'articles': Articles.objects.all()
+        'articles': articles,
+        #'comments': Comment.objects.all(),
     }
     return render(request, 'myapp/articles.html', context)
 
 def pictures(request):
-    return render(request, 'myapp/pictures.html')
+    context = {
+        'pictures': Pictures.objects.all(),
+    }
+    return render(request, 'myapp/pictures.html', context)
 
 def resume(request):
     return render(request, 'myapp/resume.html')

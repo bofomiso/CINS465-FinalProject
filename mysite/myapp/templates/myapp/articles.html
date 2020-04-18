@@ -9,6 +9,17 @@
                 </div>
                 <h2><a class="article-title" href="#">{{ article.title }}</a></h2>
                 <p class="article-content">{{ article.content }}</p>
+                <div class="mb-4">
+                    <h6 class ="text">Comment Section</h6>
+                    <hr class="solid">
+                </div>
+                {% for comment in article.comments %}
+                    <p>{{ comment.author }}</p>
+                    <p>{{ comment.comment }}</p>
+                    <p>{{ comment.content }}</p>
+                {% empty %}
+                    <p>There is no comments</p>
+                {% endfor %}
             </div>
         </article>
     {% endfor %}

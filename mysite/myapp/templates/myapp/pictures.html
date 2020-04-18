@@ -1,4 +1,21 @@
 {% extends "myapp/base.html" %}
 {% block content %}
-    <h1> This is my Picture page! </h1>
+{% for picture in pictures %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted"> Date created: {{ picture.datePosted|date:"F d, Y" }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ picture.description }}</a></h2>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ picture.picture }}" class="img-thumbnail" height=400 width = 400/>
+            </div>
+            <div class="col-md-6">
+                <h3> Picture was taken on: {{ picture.dateTaken }} </h3>
+            </div>
+        </div>
+    </div>
+</article>
+{% endfor %}
 {% endblock content %}

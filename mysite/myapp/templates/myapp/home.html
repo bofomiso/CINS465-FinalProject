@@ -1,4 +1,47 @@
 {% extends "myapp/base.html" %}
 {% block content %}
-    <h2> This is my home page! </h2>
+    <div class = "row">
+        <div class="col-md-3">
+            <div class="card card-body">
+                <img src="/static/profile.jpg" alt="Profile photo" class="img-thumbnail"/>
+                <hr>
+                <h4>Miguel Rosales</h4>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body">
+                <h2>About me</h2>
+                <hr>
+                <h4>I am currently a junior at California State University, Chico majoring in computer science. I'm graduating in the Spring of 2021</h4>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class = "row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <h2>What I know </h2>
+                <hr>
+                <h3> </h3>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-body">
+                <h2>Hobbies</h2>
+                <hr>
+                <h3>Some of my hobbies include </h3>
+            </div>
+        </div>
+    </div>
+
+    
+        
+
+    
+    <ul class="social">
+        <li><a href="https://github.com/bofomiso"><i class="fa fa-github fa-2x" style="color:black;"></i></a></li>
+        <li><a href="https://linkedin.com"><i class="fa fa-linkedin fa-2x" style="color:black;"></i></a></li>
+        <li><a href="https://facebook.com"><i class="fa fa-facebook fa-2x" style="color:black;"></i></a></li>
+        
+        </ul>
 {% endblock content%}
