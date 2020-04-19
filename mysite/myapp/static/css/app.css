@@ -1,20 +1,38 @@
-html {
-  scroll-behavior: smooth;
-}
-
 
 body {
     background: #fafafa;
     color: black;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6{
     color: black;
+    text-align: center;
+    font-family: 'Roboto';
+    
+  }
+
+  p{
+    color: grey;
+    font-size: 22px;
+    text-align: center
+  }
+
+  h3.info{
+    color: grey;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .card-body {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  i{
     text-align: center;
     
   }
   
-  ul {
+  ul.horizontal {
     list-style-type: none;
     margin: 0 auto;
     padding: 0;
@@ -22,7 +40,7 @@ body {
     display: table;
   }
 
-  li {
+  li.horizontal {
     float: left;
     padding: 16px;
   }
@@ -70,12 +88,5 @@ body {
     height: 25px;
     vertical-align: middle;
   }
-
-  .rotateimg90 {
-    -webkit-transform:rotate(90deg);
-    -moz-transform:rotate(90deg);
-    -ms-transform:rotate(90deg);
-    -o-transform:rotate(90deg);
-    transform: rotate(90deg);
-  }
+  
   

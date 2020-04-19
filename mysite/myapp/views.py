@@ -28,6 +28,12 @@ def articles(request):
     }
     return render(request, 'myapp/articles.html', context)
 
+def detailed_view(request):
+    context={
+        'articles': Articles.objects.all(),
+    }
+    return render(request,'myapp/detailed_view.html', context)
+
 def pictures(request):
     context = {
         'pictures': Pictures.objects.all(),

@@ -1,47 +1,66 @@
 {% extends "myapp/base.html" %}
 {% block content %}
-    <div class = "row">
-        <div class="col-md-3">
-            <div class="card card-body">
-                <img src="/static/profile.jpg" alt="Profile photo" class="img-thumbnail"/>
-                <hr>
-                <h4>Miguel Rosales</h4>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="card card-body">
-                <h2>About me</h2>
-                <hr>
-                <h4>I am currently a junior at California State University, Chico majoring in computer science. I'm graduating in the Spring of 2021</h4>
-            </div>
-        </div>
-    </div>
     <br>
     <div class = "row">
-        <div class="col-md-6">
-            <div class="card card-body">
-                <h2>What I know </h2>
-                <hr>
-                <h3> </h3>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card card-body">
-                <h2>Hobbies</h2>
-                <hr>
-                <h3>Some of my hobbies include </h3>
-            </div>
+        <div class="col">
+            <h2>About me</h2>
+            <hr width = 50%>
+            <p> I am currently a Junior at California State University, Chico.</p>
+            <p> I'm on track to graduate in the Spring of 2021</p>
         </div>
     </div>
+        <div class = "row">
+            <div class = "col-md-4">
+                <div class="card card-body">
+                    <br>
+                    <i class='fa fa-user' style='font-size:35px'></i>
+                    <hr>
+                    <h3>Info</h3>
+                    <h3 class="info"> Born and raised in Chico </h3>
+                    <h3 class="info"> 1st generation College student </h3>
+                    <h3 class="info"> Computer Science Major </h3>
+                    <h3 class="info"> Currently working as a Sterile Processing Tech </h3>
+                </div>
+            </div>
+            <div class = "col-md-4">
+                <div class="card card-body">
+                    <br>
+                    <i class="fa fa-puzzle-piece" style='font-size:35px'></i>
+                    <hr>
+                    <h3>Hobbies</h3>
+                    <h3 class="info"> Programming (of course) </h3>
+                    <h3 class="info"> Playing soccer </h3>
+                    <h3 class="info"> Playing video games </h3>
+                    <h3 class="info"> Going on runs in the park </h3>
+                    <h3 class="info"> Yoyoing </h3>
+                </div>
+            </div>
+            <div class = "col-md-4">
+                <div class="card card-body">
+                    <br>
+                    <i class="fa fa-question-circle" style='font-size:35px'></i>
+                    <hr>
+                    <h3>Questions?</h3>
+                    <p>You can find my resume here. If you want to contact me here is my contact information</p>
+                    <h3 class="info"> Email: askdj@gmail.com </h3>
+
+
+                </div>
+            </div>
+        </div>
+        
+
+                <!img src="/static/profile.jpg" alt="Profile photo" class="img-thumbnail"/>
+  
+
 
     
         
 
     
-    <ul class="social">
-        <li><a href="https://github.com/bofomiso"><i class="fa fa-github fa-2x" style="color:black;"></i></a></li>
-        <li><a href="https://linkedin.com"><i class="fa fa-linkedin fa-2x" style="color:black;"></i></a></li>
-        <li><a href="https://facebook.com"><i class="fa fa-facebook fa-2x" style="color:black;"></i></a></li>
-        
-        </ul>
+    <ul class="horizontal">
+        <li class="horizontal"><a href="https://github.com/bofomiso"><i class="fa fa-github fa-2x" style="color:black;"></i></a></li>
+        <li class="horizontal"><a href="https://linkedin.com"><i class="fa fa-linkedin fa-2x" style="color:black;"></i></a></li>
+        <li class="horizontal"><a href="https://facebook.com"><i class="fa fa-facebook fa-2x" style="color:black;"></i></a></li> 
+    </ul>
 {% endblock content%}
