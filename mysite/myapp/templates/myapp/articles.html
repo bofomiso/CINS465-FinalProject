@@ -9,14 +9,17 @@
                 </div>
                 <h2><a class="article-title" href="#">{{ article.title }}</a></h2>
                 <p class="article-content">{{ article.content }}</p>
+                <a href="{% url 'CommentForm' %}" class="btn btn-primary role="button" aria-pressed="true">Add comment</a>
+
                 <div class="mb-4">
+                    <hr class="solid">
                     <h6 class ="text">Comment Section</h6>
                     <hr class="solid">
                 </div>
                 {% for comment in article.comments %}
-                    <p>{{ comment.author }}</p>
-                    <p>{{ comment.comment }}</p>
-                    <p>{{ comment.content }}</p>
+                    <p class="comment"> via: {{ comment.author }}</p>
+                    <p class="comment">{{ comment.comment }}</p>
+                    <hr>
                 {% empty %}
                     <p style>There is no comments</p>
                 {% endfor %}

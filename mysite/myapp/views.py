@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Articles, Comment, Pictures
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from . import forms
+from .forms import CommentForm
 
 # Create your views here.
 def home(request):
@@ -56,3 +56,36 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'myapp/register.html', {'form': form})
+
+# def addcomment(request, art_id):
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             #comment = form.save()
+#             #comment.content = content
+#             #comment.save()
+#             form.save(request, art_id)
+#             return redirect('Home')
+#     else:
+#         form = CommentForm()
+#     return render(request, 'myapp/addComment.html', {'form': form})
+
+def addcomment(request, art_id):
+    if not request.user.is_authenticated:
+        return redirect('Home')
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            form = forms.CommentForm(request.POST)
+            if form.is_valid():
+                form.save(request, art_id)
+                return redirect('Home')
+        else:
+            form = forms.CommentForm()
+    else:
+        form = forms.CommentForm()
+    context = {
+        "art_id":art_id,
+        "form":form
+    }
+    return render(request, "addComment.html", context=context)
+    
