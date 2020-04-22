@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Articles, Comment, Pictures
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -70,22 +70,26 @@ def register(request):
 #         form = CommentForm()
 #     return render(request, 'myapp/addComment.html', {'form': form})
 
-def addcomment(request, art_id):
-    if not request.user.is_authenticated:
-        return redirect('Home')
-    if request.method == "POST":
-        if request.user.is_authenticated:
-            form = forms.CommentForm(request.POST)
-            if form.is_valid():
-                form.save(request, art_id)
-                return redirect('Home')
+def addcomment(request, slug):
+    article = get_object_or_404(Articles, slug=slug)
+    new_comment = None
+    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+
+            new_comment.content = content
+
+            new_comment.save()
         else:
-            form = forms.CommentForm()
-    else:
-        form = forms.CommentForm()
-    context = {
-        "art_id":art_id,
-        "form":form
-    }
-    return render(request, "addComment.html", context=context)
+            form = CommentForm()
+        context={
+            'article': article,
+            'new_comment': new_comment,
+            'form': form,
+            
+        }
+        
+        return render(request, "addComment.html", context=context)
     

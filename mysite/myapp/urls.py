@@ -13,5 +13,5 @@ urlpatterns = [
     path('register/', views.register, name = 'Register'),
     path('login/', LoginView.as_view(template_name = 'myapp/login.html'), name = 'Login'),
     path('logout/', LogoutView.as_view(template_name = 'myapp/logout.html'), name = 'Logout'),
-    path('comment_form/<int:art_id>/', views.addcomment, name='CommentForm'),
+    path('comment_form/<slug:slug>/', views.addcomment, name='CommentForm'),
 ]
