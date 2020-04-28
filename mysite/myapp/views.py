@@ -3,36 +3,20 @@ from .models import Articles, Comment, Pictures
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CommentForm
+from django.views import generic
+
 
 # Create your views here.
 def home(request):
     return render(request, 'myapp/home.html')
 
-def articles(request):
-    articles_objects = Articles.objects.all()
-    articles=[]
-    for article in articles_objects:
-        comment_objects=Comment.objects.filter(content=article)
-        temp_article={}
-        temp_article["title"] = article.title
-        temp_article["content"]=article.content
-        temp_article["datePosted"] = article.datePosted
-        temp_article["author"]=article.author.username
-        temp_article["comments"]=comment_objects
-        articles+=[temp_article]
-        
+class ArticlesList(generic.ListView):
+    queryset = Articles.objects.filter().order_by('-datePosted')
+    template_name = 'myapp/articles.html'
 
-    context = {
-        'articles': articles,
-        #'comments': Comment.objects.all(),
-    }
-    return render(request, 'myapp/articles.html', context)
-
-def detailed_view(request):
-    context={
-        'articles': Articles.objects.all(),
-    }
-    return render(request,'myapp/detailed_view.html', context)
+class ArticleDetail(generic.DetailView):
+    model = Articles
+    template_name ='myapp/article_details.html'
 
 def pictures(request):
     context = {
@@ -57,39 +41,23 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'myapp/register.html', {'form': form})
 
-# def addcomment(request, art_id):
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             #comment = form.save()
-#             #comment.content = content
-#             #comment.save()
-#             form.save(request, art_id)
-#             return redirect('Home')
-#     else:
-#         form = CommentForm()
-#     return render(request, 'myapp/addComment.html', {'form': form})
-
-def addcomment(request, slug):
+def ArticleDetail(request,slug):
+    template_name = 'myapp/article_details.html'
     article = get_object_or_404(Articles, slug=slug)
+    comments = Comment.objects.filter(content=article)
     new_comment = None
-    
+    # Comment posted
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            new_comment = form.save(commit=False)
-
-            new_comment.content = content
-
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.author = request.user
+            new_comment.content = article
+            # Save the comment to the database
             new_comment.save()
-        else:
-            form = CommentForm()
-        context={
-            'article': article,
-            'new_comment': new_comment,
-            'form': form,
-            
-        }
-        
-        return render(request, "addComment.html", context=context)
+    else:
+        comment_form = CommentForm()
     
+    return render(request, template_name, {'article': article, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})    

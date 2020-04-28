@@ -39,7 +39,18 @@ body {
     text-align: center;
     
   }
-  
+
+  img.profile{
+    object-fit: cover;
+    overflow: hidden;
+    width: 30vh;
+    height: 30vh;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   ul.horizontal {
     list-style-type: none;
     margin: 0 auto;

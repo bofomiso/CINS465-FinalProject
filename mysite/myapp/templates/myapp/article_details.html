@@ -1,0 +1,37 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" >{{ article.author }}</a>
+                <small class="text-muted">{{ article.datePosted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ article.title }}</a></h2>
+            <p class="article-content">{{ article.content }}</p>
+        </div>
+    </article>
+    <div class="mb-4">
+        <hr class="solid">
+        <h6 class ="text">Comment Section</h6>
+        <hr class="solid">
+    </div>
+
+    {% for comment in comments %}
+        <p class="comment"> via: {{ comment.author }}</p>
+        <p class="comment">{{ comment.comment }}</p>
+        <hr>
+        {% empty %}
+        <p style>There is no comments</p>
+    {% endfor %}
+
+    <div class="content-section">
+        <form method='POST'>
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+    </div>
+
+
+    
+{% endblock content %}
