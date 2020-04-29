@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Articles, Comment, Pictures
+from .models import Articles, Comment, Pictures, PicComment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CommentForm
+from .forms import CommentForm, PicCommentForm
 from django.views import generic
 
 
@@ -18,11 +18,19 @@ class ArticleDetail(generic.DetailView):
     model = Articles
     template_name ='myapp/article_details.html'
 
-def pictures(request):
-    context = {
-        'pictures': Pictures.objects.all(),
-    }
-    return render(request, 'myapp/pictures.html', context)
+class PicturesList(generic.ListView):
+    queryset = Pictures.objects.filter().order_by('-datePosted')
+    template_name = 'myapp/pictures.html'
+
+class PicturesDetail(generic.DetailView):
+    model = Articles
+    template_name ='myapp/picture_details.html'
+
+# def pictures(request):
+#     context = {
+#         'pictures': Pictures.objects.all(),
+#     }
+#     return render(request, 'myapp/pictures.html', context)
 
 def resume(request):
     return render(request, 'myapp/resume.html')
@@ -60,4 +68,25 @@ def ArticleDetail(request,slug):
     else:
         comment_form = CommentForm()
     
-    return render(request, template_name, {'article': article, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})    
+    return render(request, template_name, {'article': article, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form}) 
+
+def PicturesDetail(request,slug):
+    template_name = 'myapp/picture_details.html'
+    picture = get_object_or_404(Pictures, slug=slug)
+    comments = PicComment.objects.filter(content=picture)
+    new_comment = None
+    # Comment posted
+    if request.method == 'POST':
+        comment_form = PicCommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.author = request.user
+            new_comment.content = picture
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = PicCommentForm()
+    
+    return render(request, template_name, {'picture': picture, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})    

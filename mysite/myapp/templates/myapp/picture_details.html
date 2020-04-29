@@ -1,12 +1,12 @@
 {% extends "myapp/base.html" %}
 {% block content %}
-{% for picture in pictures_list %}
+
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
             <small class="text-muted"> Date created: {{ picture.datePosted|date:"F d, Y" }}</small>
         </div>
-        <h2><a class="article-title" href="{% url 'picture_details' picture.slug %}">{{ picture.description }}</a></h2>
+        <h2><a class="article-title" href="#">{{ picture.description }}</a></h2>
         <div class="row">
             <div class="col-md-6">
                 <img src="{{ picture.picture }}" class="img-thumbnail" height=400 width = 400/>
@@ -17,5 +17,26 @@
         </div>
     </div>
 </article>
+<div class="mb-4">
+    <hr class="solid">
+    <h6 class ="text">Comment Section</h6>
+    <hr class="solid">
+</div>
+
+{% for comment in comments %}
+    <p class="comment"> via: {{ comment.author }}</p>
+    <p class="comment">{{ comment.comment }}</p>
+    <hr>
+    {% empty %}
+    <p style>There is no comments</p>
 {% endfor %}
+
+<div class="content-section">
+    <form method='POST'>
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+    </form>
+</div>
+
 {% endblock content %}
