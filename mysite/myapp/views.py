@@ -38,6 +38,11 @@ def resume(request):
 def chat(request):
     return render(request, 'myapp/chat.html')
 
+def room(request, room_name):
+    return render(request, 'myapp/room.html', {
+        'room_name': room_name
+    })
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

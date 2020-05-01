@@ -27,7 +27,7 @@
                   <a href="{% url 'Articles' %}" class="nav-item nav-link">Articles</a>
                   <a href="{% url 'Pictures' %}" class="nav-item nav-link">Pictures</a>
                   <a href="{% url 'Resume' %}" class="nav-item nav-link">Resume</a>
-                  <a href="{% url 'Chat' %}" class="nav-item nav-link">Chat</a>
+                  <a href="/chat/lobby" class="nav-item nav-link">Chat</a>
               </div>
               <div class="navbar-nav ml-auto">
                   {% if user.is_authenticated %}

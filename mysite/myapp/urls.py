@@ -12,6 +12,7 @@ urlpatterns = [
     path('pictures/<slug:slug>/', views.PicturesDetail, name='picture_details'),
     path('resume/', views.resume, name = 'Resume'),
     path('chat/', views.chat, name = 'Chat'),
+    path('chat/<str:room_name>/', views.room, name='room'),
     path('register/', views.register, name = 'Register'),
     path('login/', LoginView.as_view(template_name = 'myapp/login.html'), name = 'Login'),
     path('logout/', LogoutView.as_view(template_name = 'myapp/logout.html'), name = 'Logout'),
