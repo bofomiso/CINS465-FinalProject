@@ -23,15 +23,13 @@
         {% empty %}
         <p style>There is no comments</p>
     {% endfor %}
-
-    <div class="content-section">
-        <form method='POST'>
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-        </form>
-    </div>
-
-
-    
+    {% if request.user.is_authenticated %}
+        <div class="content-section">
+            <form method='POST'>
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock content %}

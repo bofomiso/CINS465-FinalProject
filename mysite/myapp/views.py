@@ -61,6 +61,8 @@ def ArticleDetail(request,slug):
     new_comment = None
     # Comment posted
     if request.method == 'POST':
+        # if request.user.is_authenticated:
+        #     return redirect('Login')
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             # Create Comment object but don't save to database yet
@@ -82,6 +84,8 @@ def PicturesDetail(request,slug):
     new_comment = None
     # Comment posted
     if request.method == 'POST':
+        # if request.user.is_authenticated:
+        #     return redirect('Login')
         comment_form = PicCommentForm(data=request.POST)
         if comment_form.is_valid():
             # Create Comment object but don't save to database yet
