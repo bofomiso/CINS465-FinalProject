@@ -40,4 +40,9 @@
     </div>
 {% endif %}
 
+{% if not request.user.is_authenticated %}
+    <h3> Please log in to comment </h3>
+    <br>
+{% endif %}
+
 {% endblock content %}
